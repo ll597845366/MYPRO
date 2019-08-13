@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button onclick="insert()">insert</button>
+<div id="app"></div>
+</body>
+<script type="text/javascript">
+//框架
+function Vue(options)
+{
+	//每隔100ms更新界面
+	var el=options.el;
+	var root=document.getElementById(el);
+	
+	//items是个数组
+	var items=options.data.items;
+	
+	window.setInterval(function(){
+		root.innerHTML="";
+		for (var i=0;i<items.length;i++)
+			{
+			root.innerHTML=root.innerHTML
+			+items[i].title
+			+"<br/>";
+			}
+	},100);
+	}
+//------------------
+//用框架
+var options={
+		el:"app",
+		data:{
+			items:[
+			       {title:"pc1"},
+			       {title:"pc2"}
+			       ]
+		}
+}
+var vue=new Vue(options);
+function insert()
+{
+	//只需要把数据放在数组中，框架会自动更新界面
+	var item={title:"new item"};
+	//items[0]={title:"pc1"}
+	//items[1]={title:"pc2"}
+	var length=options.data.items.length;
+	//数组中的数据发生变化，界面自动更新。
+	options.data.items[length]=item;
+	}
+//var i=0;
+//window.setTimeout(function(){
+//	console.log("timeOut");
+//},100);
+//window.setInterval(function(){
+	//console.log("Interval"+(i++));
+//},100);
+</script>
+</html>
+
+
+
+
+
+

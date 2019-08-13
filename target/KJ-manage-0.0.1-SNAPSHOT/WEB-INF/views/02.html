@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="app"> app</div>
+<script type="text/javascript">
+
+function Vue(options)
+{
+	var el=options.el;
+	var root =document.getElementById(el);
+	var item=options.data.item;
+	root.innerHTML=item.title;
+	
+	
+	
+	}
+
+var options={el:"app",
+		data:{
+			item:{title:"pc"},
+			user:{}}
+
+
+};
+var vue=new Vue(options);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.KongJian.manage.mapper.UserMapper">
+	
+	<!--结果集采用别名的形式，需要在spring中做定义  -->
+	<select id="findUser" resultType="User">
+		select user_name,gender,age,id_card,tel,address,login_username,banji from user where login_username=#{loginUsername}
+	</select>
+	<select id="xiugai" resultType="User">
+	select tel,password from user where login_username=#{loginUsername}
+	
+	
+	</select>
+	
+	<insert id="insertUser">
+	insert into user(user_name,gender,age,id_card,tel,address,job,created_time,updated_time,score,banji)values(#{userName},#{gender},
+	#{age},#{idCard},#{tel},#{address},#{job},#{createdTime},#{updatedTime},#{score},#{banji})	
+	</insert>
+	<select id="loginRe" resultType="String">
+	
+	select password from user where login_username=#{loginUsername}
+	</select>
+	<select id="signRe" resultType="String">
+	select login_username from user 
+	</select>
+	<insert id="signInsert" useGeneratedKeys="true">
+	insert into user(login_username,password,user_name,gender,age,id_card,tel,address,job,created_time,updated_time,banji) values(#{loginUsername},#{password},#{userName},#{gender},
+	#{age},#{idCard},#{tel},#{address},#{job},#{createdTime},#{updatedTime},#{banji})
+	
+	</insert>
+	<select id="ReloginUsername" resultType="String">
+	select  login_username from user where login_Username=#{loginUsername}
+	</select>
+	<select id="Reloginpassword" resultType="String">
+	select  password from user where login_Username=#{loginUsername}
+	</select>
+	<select id="Reloginnicheng" resultType="User">
+	select  user_name,status from user where login_Username=#{loginUsername}
+	</select>
+	<update id="wanshan">
+	
+	update user set age=#{age},address=#{address},gender=#{gender} where login_username=#{loginUsername}
+	
+	</update>
+	<update id="xiugaips">
+	update user  set password=#{password} where login_username=#{loginUsername}
+	
+	</update>
+</mapper>

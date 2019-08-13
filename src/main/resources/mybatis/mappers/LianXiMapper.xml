@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.KongJian.manage.mapper.LianXiMapper">
+<!-- 通过账号查询已经发布的考试 -->
+<select id="lxtmClassname" resultType="String">
+Select banji from user where login_username=#{loginUsername}
+</select>
+<select id="endTime" resultType="LianXi">
+select * from lianxi where class_name=#{className}
+</select>
+
+<insert id="submitlx">
+insert into lxdaan(daan,login_username,lianxi_id,class_name) values(#{lxdaan},#{loginUsername},#{lxid},#{className})
+</insert>
+<select id="sfydaan" resultType="String">
+SELECT  daan from lxdaan where class_name=#{className} and login_username=#{loginUsername}
+
+</select>
+<insert id="wjdcinsert">
+insert into diaocha(class_name,login_username,address,name,koubei,age
+,school_ed,tel,hope_money,skill_teacher,zhengshu,xueli,npy,zhichi,skill) 
+values(#{className},#{loginUsername},#{address},#{name},#{koubei},
+#{age},#{schoolEd},#{tel},#{hopeMoney},#{skillTeacher},#{zhengshu},
+#{xueli},#{npy},#{zhichi},#{skill})
+</insert>
+<update id="wjdcstatus">
+update user  set status=1 where login_username=#{loginUsername}
+
+</update>
+</mapper>

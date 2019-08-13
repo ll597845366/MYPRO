@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.KongJian.manage.mapper.MianShiTiMuMapper">
+<!-- 通过账号查询已经发布的考试 -->
+<insert id="mstminsert">
+insert into mstm(question,answers,type,pid) 
+values(#{mstm.question},#{mstm.answers},#{mstm.type},#{mstm.pid})
+</insert>
+<select id="findPid" resultType="Integer">
+select count(*) from mstm where type=#{type}</select>
+
+<select id="myfxjd" resultMap="msfxjd">
+SELECT mj.* , COUNT(ms.id) as mstmzs FROM mstmjd AS mj ,mstm AS ms WHERE mj.login_username=#{loginUsername} AND mj.type=ms.type GROUP BY mj.type;
+</select>
+<resultMap type="MstmJd" id="msfxjd">
+<result property='loginUsername' column="login_username"/>
+<result property='type' column="type"/>
+<result property='loginUsername' column="login_username"/>
+<result property='pid' column="pid"/>
+<result property='mstmzs' column="COUNT(ms.id)"/>
+</resultMap>
+<select id="findMSTMZS" resultType="Integer">
+select count(id) from mstm where type=#{type};
+
+</select>
+<select id="mstmfxpid" resultType="Integer">
+
+
+select pid from mstmjd where login_username=#{loginUsername} and type=#{type}
+</select>
+
+<insert id="insertMstmJd" >
+insert into mstmjd(login_username,type,pid) values(#{loginUsername},#{type},#{pid})
+
+</insert>
+
+<select id="startfx" resultType="MianShiTiMu">
+select question,answers,type,pid from mstm where type=#{type} and pid=#{pid}
+ </select>
+ <update id="updatemstmjd">
+ update mstmjd  set pid=#{pid} where login_username=#{loginUsername} and type=#{type}
+ 
+ </update>
+</mapper>

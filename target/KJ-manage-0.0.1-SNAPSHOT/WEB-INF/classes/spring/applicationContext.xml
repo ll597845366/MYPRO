@@ -1,0 +1,82 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<!--1.开启包扫描  -->
+	<context:component-scan base-package="com.KongJian"></context:component-scan>
+		<!--2.1spring加载pro 
+		如果需要加载多个配置文件则使用通配符
+	 -->
+	<!-- <context:property-placeholder location="classpath:/properties/*.properties"/> -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/properties/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!--2.2管理数据源  -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+	</bean>
+		<!--3.1配置事务管理器  -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!--3.2定义事务管理策略  
+		事务传播属性   
+			REQUIRED   表示必须添加事务.
+			NEVER      表示从不添加事务
+			SUPPORTS   如果之前的操作有事务,则合并为一个事务,如果之前
+						没有事务,则不添加事务.
+			"REQUIRES_NEW" 每次添加新的事务
+	-->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*"   propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="find*"   propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="*"       propagation="SUPPORTS" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!--3.3配置事务切面
+		Content Model : (pointcut*, advisor*, aspect*)
+		按类匹配:(粗粒度)
+			within(包名.类名)
+		按方法和参数匹配:(细粒度)
+			execution(返回值类型 包名.类名.方法名(参数列表))
+		
+		AOP:
+			在不影响源码的条件下,对方法做了扩展.
+			通知类型:
+				1.前置通知
+				2.后置通知
+				3.异常通知
+				4.最终通知
+				5.环绕通知  真正关于目标方法执行
+	  -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.KongJian.manage.service..*.*(..))" id="pc"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pc"/>
+	</aop:config>
+	
+	<!-- 
+		true表示强制使用cgLib
+	<aop:aspectj-autoproxy proxy-target-class="false"/> -->
+</beans>

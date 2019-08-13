@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.KongJian.manage.mapper.KaoShiMapper">
+<!-- 通过账号查询已经发布的考试 -->
+<select id="xsks" resultType="String">
+select kaoshi_name from kaoshi where kaoshi_class=(select banji from user where login_username=#{loginUsername})
+
+</select>
+
+<select id="tmzs" resultType="KaoShi">
+
+select * from kaoshi where kaoshi_name=#{kaoshiName}
+</select>
+
+<select id="xztm" resultType="KaoShi">
+
+select *from kaoshi where tmid=#{tmid}
+
+</select>
+<select id="zqda" resultType="KaoShi">
+
+ select da_an,tmid,fenshu from kaoshi where id=#{id}
+</select>
+
+<update id="fenshu">
+	update user  set ${ksname}=#{zongfen} where login_username=#{loginUsername}
+	
+	</update>
+	<select id="kscore" resultType="Integer">
+	
+	 select ${kscore} from user where login_username=#{loginUsername}
+	</select>
+	<insert id="jiludaan">
+	
+	insert into mydaan(login_username,timid,ksname,myda_an) values(#{loginUsername},#{timid},#{ksname},#{mydaan})
+	
+	</insert>
+	
+	<select id="sfrk" resultType="String">
+	
+	 select myda_an from mydaan where login_username=#{loginUsername}and ksname=#{ksname} and timid=#{timid}
+	
+	
+	</select>
+	
+	<update id="daangengxin">
+	update mydaan  set myda_an=#{mydaan} where login_username=#{loginUsername}and ksname=#{ksname} and timid=#{timid}
+	
+	</update>
+	<select id="sjed"  resultType="KaoShi">
+	
+	select * from kaoshi where tmid=#{timid} and kaoshi_name=#{kaoshiName}
+	</select>
+	<select id="bjpm"  resultType="User">
+	
+	select user_name,banji,login_username,${ksname} from user where banji=#{classname} and ${ksname} is not null order by ${ksname} desc
+	</select>
+	 <select id="vipex" resultType="Integer">
+	 
+	 select status from user where login_username=#{loginUsername}
+	 </select>
+	 
+	 <insert id="insertkstm">
+	 
+	 
+	 insert  into kaoshi(timu,xuan_xiang1,xuan_xiang2,xuan_xiang3,xuan_xiang4,da_an,kaoshi_name,kaoshi_class,tmid,fenshu,jie_xi)
+	  values(#{timu},#{xuanXiang1},#{xuanXiang2},#{xuanXiang3},#{xuanXiang4},#{daAn},#{kaoshiName},#{kaoshiClass},#{tmid},#{fenshu},#{jieXi})
+	 
+	 </insert>
+	 <!-- 
+	 <select id="cuotitable" resultMap="cuotimsg"></select>
+	 
+	 <resultMap id="cuotimsg">
+	 <result property="banji" column="banji"/>
+	 <result property=""/>
+	 
+	  </resultMap> -->
+	  <select id="kseduser" resultType="User">
+	  select * from user where login_username=#{loginUsername}
+	  
+	  </select>
+	  <select id="cuoticount" resultType="Integer">
+	  select count(*) from mydaan as m,kaoshi as k where 
+	  m.ksname=k.kaoshi_name AND k.tmid=m.`timid` AND m.myda_an !=k.da_an AND m.login_username=#{loginUsername} AND m.ksname=#{ksname}
+	  </select>
+	  <select id="agcuoti" resultType="KaoShi">
+	  
+	SELECT k.* FROM kaoshi AS k ,mydaan AS m WHERE m.login_username=#{loginUsername} AND m.myda_an!=k.da_an AND m.ksname=#{ksname} AND m.ksname=k.kaoshi_name AND k.tmid=m.timid
+	  </select>
+	  
+	  <select id="ctjiexi" resultType="KaoShi">
+	  select * from kaoshi where kaoshi_name=#{ksname} and tmid=#{tmid}
+	  </select>
+</mapper>

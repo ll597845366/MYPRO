@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--配置顺序
+		Content Model : (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, 
+ objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)
+		
+	  -->
+	<settings>
+		<!-- 开启驼峰自动映射
+			字段:
+				user_id
+				user_name
+			对象:
+				userId
+				userName
+			优点:
+				可以将数据库中的字段,按照驼峰规则自动
+				映射到POJO对象的属性中.自动的将"_"去掉
+				之后首字母大写.
+				注意事项:
+					引入驼峰映射规则后,必须按照规则使用,否则
+					程序运行有问题.
+		 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+</configuration>
