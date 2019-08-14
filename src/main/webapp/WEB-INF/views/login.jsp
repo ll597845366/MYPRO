@@ -928,7 +928,9 @@ alert("账号或密码错误");
               $("#login2").text(userName);
               $("#login2").attr('data-toggle','#');
               $('#login').modal('hide');
-              if(result.status==0){
+              if(result.status==1){
+                  setCookie("loginUsername",loginUsername);
+                  
                         var wjdc1="<a  id='wjdc' style='color:#FE9A2E;' onclick='wjdc()' > 问卷调查</a>";
                         
                         var mymsg="<a  class='dropdown-toggle' data-toggle='dropdown' role='button' "+
@@ -941,7 +943,8 @@ alert("账号或密码错误");
                         
                         $("#wjdcshow").html(wjdc1);
                   }else if(result.status>=3){
-                        
+                	  setCookie("loginUsername",loginUsername);
+                     
              var teacherselect=" <a  class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' aria-haspopup='true' style='color:#FE9A2E;'>项目经理选项<span class='caret'></span> </a>"+
              "<ul class='dropdown-menu'>"+
             " <li ><a  id='wdks' style='color:#FE9A2E;' onclick='wjdcxq()' >问卷调查详情</a></li>"+
@@ -999,6 +1002,8 @@ $.ajax({
 
 function tuichu(){
 	
+	
+	delCookie("loginUsername");
 	location.reload();
 	
 }
@@ -1174,10 +1179,11 @@ function xiugai(password,newpassword,tel,loginUsername){
 }
 $("#wdks").click(function(){
 
-	var loginUsername=$("#loginUsername").val();
-	var userName=$("#login2").text();
+	var loginUsername=getCookie("loginUsername");
 	
-	if(loginUsername!=""&&userName!="登录"){
+	
+	
+	if(loginUsername!=""&&loginUsername!=null){
 		$("#bjpm1").hide();
 		$("#pic").hide();
 		$("#wdks1").show();
@@ -1188,7 +1194,7 @@ $("#wdks").click(function(){
 		$("#cjcx2").hide();
 		$("#shijuan").hide();
 		$("#fabukaoshi").hide();
-     xsks(loginUsername);
+         xsks(loginUsername);
          
 
 		}else{
@@ -1753,7 +1759,56 @@ function wjdcxq(){
 
 
  $(function(){ 
-
+        var loginUsername=getCookie("loginUsername");
+        if(loginUsername!=null&&loginUsername!=""){
+            $.ajax({
+                  url:"findUser",
+                  type:"post",
+                  dataType:"json",
+                  data:{loginUsername:loginUsername},
+                  success:function(result){
+                	  var userName=result.userName;
+                      
+                      $("#login2").text(userName);
+                      $("#login2").attr('data-toggle','#');
+                      $('#login').modal('hide');
+                     
+                       if(result.status==1){
+                         
+                          
+              var wjdc1="<a  id='wjdc' style='color:#FE9A2E;' onclick='wjdc()' > 问卷调查</a>";
+                                
+               var mymsg="<a  class='dropdown-toggle' data-toggle='dropdown' role='button' "+
+        "aria-expanded='false' aria-haspopup='true' style='color:#FFFFFF;'>"+userName+"<span class='caret'></span> </a>"+
+        "<ul class='dropdown-menu'>"+
+       "<li ><a   style='color:#FE9A2E;' onclick='zhanghao()'> 账号信息</a></li>"+
+     "<li><a   style='color:#FE9A2E;' onclick='tuichu()'>退出登录</a></li>"+
+      "</ul>";
+        	                       $("#mylogin").html(mymsg);
+                                   $("#wjdcshow").html(wjdc1);
+                                  }else if(result.status>=3){
+                        	  
+                             
+                     var teacherselect=" <a  class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' aria-haspopup='true' style='color:#FE9A2E;'>项目经理选项<span class='caret'></span> </a>"+
+                     "<ul class='dropdown-menu'>"+
+                    " <li ><a  id='wdks' style='color:#FE9A2E;' onclick='wjdcxq()' >问卷调查详情</a></li>"+
+                    
+                                       "</ul>";
+                     var addmstm="<a  id='mstmadd1' style='color:#FE9A2E;'>添加题目</a>";
+                     $("#teacherselect").html(teacherselect);
+                     $("#mstmadd").html(addmstm);
+                     var mymsg="<a  class='dropdown-toggle' data-toggle='dropdown' role='button' "+
+        			 "aria-expanded='false' aria-haspopup='true' style='color:#FFFFFF;'>"+userName+"<span class='caret'></span> </a>"+
+                     "<ul class='dropdown-menu'>"+
+                     "<li ><a   style='color:#FE9A2E;' onclick='zhanghao()'> 账号信息</a></li>"+
+                     "<li><a   style='color:#FE9A2E;' onclick='tuichu()'>退出登录</a></li>"+
+                     "</ul>";
+                     $("#mylogin").html(mymsg);
+                              }
+                      }
+                  
+            });
+            }
 		var mW=600;
 		var mH=600;
 		var canvas = document.createElement('canvas');
@@ -2016,7 +2071,32 @@ $("#mywechat").click(function(){
 	}
 	
 });
-
+//获取cookie
+function getCookie(name)
+{
+var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+if(arr=document.cookie.match(reg))
+return unescape(arr[2]);
+else
+return null;
+}
+//设置cookie
+function setCookie(name,value)
+{
+var Days = 30;
+var exp = new Date();
+exp.setTime(exp.getTime() + Days*24*60*60*1000);
+document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+//删除cookie
+function delCookie(name)
+{
+var exp = new Date();
+exp.setTime(exp.getTime() - 1);
+var cval=getCookie(name);
+if(cval!=null)
+document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
 	</script>
 	
 </body>

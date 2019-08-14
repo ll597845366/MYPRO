@@ -17,7 +17,7 @@ public class KaoShiServiceImpl  implements KaoShiService{
 	@Autowired
 	KaoShiMapper kaoShiMapper;
 	@Override
-	public List<String> xsks(String loginUsername) {
+	public String xsks(String loginUsername) {
 		
 		return kaoShiMapper.xsks(loginUsername);
 	}
@@ -42,9 +42,9 @@ public class KaoShiServiceImpl  implements KaoShiService{
 		
 	}
 	@Override
-	public Integer kscore(String loginUsername, String kscore) {
+	public Integer kscore(String loginUsername, String ksname) {
 		
-		return kaoShiMapper.kscore(loginUsername, kscore);
+		return kaoShiMapper.kscore(loginUsername, ksname);
 	}
 	@Override
 	public void jiludaan(String mydaan, String loginUsername, String ksname, Integer timid) {

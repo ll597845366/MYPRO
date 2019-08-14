@@ -10,12 +10,12 @@ import com.KongJian.manage.pojo.User;
 
 public interface KaoShiMapper {
 	
-public List<String> xsks(String loginUsername);
+public String xsks(String loginUsername);
 public List<KaoShi> tmzs(String kaoshiName);
 public KaoShi xztm(Integer tmid);
 public KaoShi zqda(Integer id);
 public void fenshu(@Param("zongfen")Integer  zongfen,@Param("loginUsername")String loginUsername,@Param("ksname")String ksname );
-public Integer kscore(@Param("loginUsername")String loginUsername,@Param("kscore")String kscore);
+public Integer kscore(@Param("loginUsername")String loginUsername,@Param("ksname")String ksname);
 public void jiludaan(@Param("mydaan")String mydaan,@Param("loginUsername")String loginUsername,@Param("ksname")String ksname,@Param("timid")Integer timid);
 public String sfrk(@Param("loginUsername")String loginUsername,@Param("ksname")String ksname,@Param("timid")Integer timid);
 public void daangengxin(@Param("mydaan")String mydaan,@Param("loginUsername")String loginUsername,@Param("ksname")String ksname,@Param("timid")Integer timid);

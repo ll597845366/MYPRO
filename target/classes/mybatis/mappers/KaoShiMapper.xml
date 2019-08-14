@@ -30,7 +30,7 @@ select *from kaoshi where tmid=#{tmid}
 	</update>
 	<select id="kscore" resultType="Integer">
 	
-	 select ${kscore} from user where login_username=#{loginUsername}
+	 select score from score where login_username=#{loginUsername} and kaoshi_name=#{ksname}
 	</select>
 	<insert id="jiludaan">
 	

@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import com.KongJian.manage.pojo.User;
 
 public interface UserMapper {
-  
 	
 	public User findUser(String loginUsername);
 	public void insertUser(User user);

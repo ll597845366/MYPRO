@@ -10,12 +10,12 @@ import com.KongJian.manage.pojo.User;
 import com.KongJian.manage.pojo.cuotimsg;
 
 public interface KaoShiService {
-public List<String> xsks(String loginUsername);
+public String xsks(String loginUsername);
 public List<KaoShi> tmzs(String kaoshiName);
 public KaoShi xztm(Integer tmid);
 public KaoShi zqda(Integer id);
 public void fenshu(Integer  zongfen,String loginUsername,String ksname );
-public Integer kscore(String loginUsername ,String kscore);
+public Integer kscore(String loginUsername ,String ksname);
 public void jiludaan(String mydaan,String loginUsername,String ksname,Integer timid);
 public String sfrk(String loginUsername,String ksname,Integer timid);
 public void daangengxin(String mydaan,String loginUsername,String ksname,Integer timid);

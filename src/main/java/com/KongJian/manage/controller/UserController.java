@@ -3,6 +3,7 @@ package com.KongJian.manage.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
@@ -74,7 +75,7 @@ public String loginRe(User user) {
 	String s="";
 	System.out.println(s1);
 	String pa=userService.loginRe(user.getLoginUsername());
-	System.out.println(pa);
+	
 		if(pa==null) {
 			s= "login";
 		}else if(s1.equals(pa)){
@@ -83,7 +84,7 @@ public String loginRe(User user) {
 			s= "login";
 			
 		}
-		System.out.println(s);
+		
 		
 		
 		return s;
@@ -254,10 +255,23 @@ public String Retel(String tel) {
 
 @RequestMapping("Resign")
 public String Resign(User user) {
-	userService.signInsert(user);
+	String username1=userService.ReloginUsername(user.getLoginUsername());
+	
+	if(username1==null) {
+		if(user.getUserName()==null) {
+			user.setUserName(user.getLoginUsername());
+				
+			}
+		userService.signInsert(user);
+		return "welsign";
+	}else {
+		return "◊¢≤· ß∞‹£¨’À∫≈“—¥Ê‘⁄";
+		
+	}
 	
 	
-	return "welsign";
+	
+	
 	
 	
 	
@@ -284,7 +298,7 @@ public User LoginUser(String loginUsername,String password) throws IOException {
 		
 	}else {
 	   String s1=userService.Reloginpassword(loginUsername);
-	   System.out.println(s1);
+	   
 		if(s1.equals(password)) {
 			User result=userService.Reloginnicheng(loginUsername);
 			
@@ -350,6 +364,27 @@ public String xgpassword(String password,String loginUsername,String newpassword
 		  
 	  }
 	}
+	/*
+	 * @RequestMapping("sjqy")
+	 * 
+	 * @ResponseBody public String sjqi() { Integer num=0; List<User> list=new
+	 * ArrayList<User>(); list=userService.findAll(); for(int i=0;i<list.size();i++)
+	 * { User user=list.get(i); Integer[] n=new Integer[13]; n[0]=user.getCgb1();
+	 * n[1]=user.getCgb2(); n[2]=user.getCgb3(); n[3]=user.getCgb4();
+	 * n[4]=user.getCgb5(); n[5]=user.getCgb6(); n[6]=user.getCgb7();
+	 * n[7]=user.getCgb8(); n[8]=user.getCgb9(); n[9]=user.getCgb10();
+	 * n[10]=user.getCgb11(); n[11]=user.getCgb12(); n[12]=user.getCgb13(); for(int
+	 * j=0;j<n.length;j++) { if(n[j]!=null&&n[j]!=0) { String
+	 * kaoshiName="cgb"+(j+1); Integer score=n[j]; String
+	 * loginUsername=user.getLoginUsername(); userService.sjqy(kaoshiName, score,
+	 * loginUsername); num=num+1; }else { continue;
+	 * 
+	 * }
+	 * 
+	 * }
+	 * 
+	 * } return "«®“∆≥…π¶"+num; }
+	 */
 
 }
 

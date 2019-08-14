@@ -44,14 +44,14 @@ public class KaoShiController {
          @RequestMapping("xsks")
          @ResponseBody
 	public String xsks(String loginUsername) {
-		List<String> list=kaoShiServie.xsks(loginUsername);
+		String ksname=kaoShiServie.xsks(loginUsername);
 		
-		String s=list.get(0);
-		Integer chengji=kaoShiServie.kscore(loginUsername, s);
-		System.out.println(chengji);
-		if(s!=null&&(chengji==null||chengji==0)) {
+		
+		Integer chengji=kaoShiServie.kscore(loginUsername, ksname);
+		System.err.println(chengji);
+		if(ksname!=null&&(chengji==null||chengji==0)) {
 			
-			return s;
+			return ksname;
 			
 		}else {
 			
