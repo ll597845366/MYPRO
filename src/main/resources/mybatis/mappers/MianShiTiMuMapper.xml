@@ -12,12 +12,13 @@ values(#{mstm.question},#{mstm.answers},#{mstm.type},#{mstm.pid})
 select count(*) from mstm where type=#{type}</select>
 
 <select id="myfxjd" resultMap="msfxjd">
-SELECT mj.* , COUNT(ms.id) as mstmzs FROM mstmjd AS mj ,mstm AS ms WHERE mj.login_username=#{loginUsername} AND mj.type=ms.type GROUP BY mj.type;
+SELECT mj.type,mj.pid,mj.login_username, COUNT(ms.id)  FROM mstmjd AS mj ,mstm AS ms WHERE mj.login_username=#{loginUsername} AND mj.type=ms.type 
+GROUP BY mj.type,mj.pid,mj.login_username
 </select>
 <resultMap type="MstmJd" id="msfxjd">
 <result property='loginUsername' column="login_username"/>
 <result property='type' column="type"/>
-<result property='loginUsername' column="login_username"/>
+
 <result property='pid' column="pid"/>
 <result property='mstmzs' column="COUNT(ms.id)"/>
 </resultMap>

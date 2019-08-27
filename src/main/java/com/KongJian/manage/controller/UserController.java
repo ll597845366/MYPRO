@@ -234,7 +234,7 @@ public String bootstrap() {
 
 
 
-//ÑéÖ¤µç»°ºÅÂëÊÇ·ñÕýÈ·
+//ï¿½ï¿½Ö¤ï¿½ç»°ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·
 @RequestMapping("Retel")
 @ResponseBody
 public String Retel(String tel) {
@@ -265,7 +265,7 @@ public String Resign(User user) {
 		userService.signInsert(user);
 		return "welsign";
 	}else {
-		return "×¢²áÊ§°Ü£¬ÕËºÅÒÑ´æÔÚ";
+		return "×¢ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½Ëºï¿½ï¿½Ñ´ï¿½ï¿½ï¿½";
 		
 	}
 	
@@ -340,7 +340,7 @@ public String wanshan(Integer age,String address,String gender,String loginUsern
 	
 	
 }
-//ÐÞ¸ÄÃÜÂë
+//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½
 @RequestMapping("xgpassword")
 @ResponseBody
 public String xgpassword(String password,String loginUsername,String newpassword,String tel) {
@@ -364,27 +364,7 @@ public String xgpassword(String password,String loginUsername,String newpassword
 		  
 	  }
 	}
-	/*
-	 * @RequestMapping("sjqy")
-	 * 
-	 * @ResponseBody public String sjqi() { Integer num=0; List<User> list=new
-	 * ArrayList<User>(); list=userService.findAll(); for(int i=0;i<list.size();i++)
-	 * { User user=list.get(i); Integer[] n=new Integer[13]; n[0]=user.getCgb1();
-	 * n[1]=user.getCgb2(); n[2]=user.getCgb3(); n[3]=user.getCgb4();
-	 * n[4]=user.getCgb5(); n[5]=user.getCgb6(); n[6]=user.getCgb7();
-	 * n[7]=user.getCgb8(); n[8]=user.getCgb9(); n[9]=user.getCgb10();
-	 * n[10]=user.getCgb11(); n[11]=user.getCgb12(); n[12]=user.getCgb13(); for(int
-	 * j=0;j<n.length;j++) { if(n[j]!=null&&n[j]!=0) { String
-	 * kaoshiName="cgb"+(j+1); Integer score=n[j]; String
-	 * loginUsername=user.getLoginUsername(); userService.sjqy(kaoshiName, score,
-	 * loginUsername); num=num+1; }else { continue;
-	 * 
-	 * }
-	 * 
-	 * }
-	 * 
-	 * } return "Ç¨ÒÆ³É¹¦"+num; }
-	 */
+	
 
 }
 

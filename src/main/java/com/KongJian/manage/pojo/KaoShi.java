@@ -13,6 +13,13 @@ private String kaoshiClass;
 private Integer tmid;
 private Integer fenshu;
 private String jieXi;
+private String ksTime;
+public String getKsTime() {
+	return ksTime;
+}
+public void setKsTime(String ksTime) {
+	this.ksTime = ksTime;
+}
 public String getJieXi() {
 	return jieXi;
 }

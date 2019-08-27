@@ -15,15 +15,16 @@ D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\service\KaoShiServic
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\pojo\MstmJd.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\controller\UserController.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\service\KaoShiService.java
+D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\pojo\BJPM.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\pojo\Student.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\service\MianShiTiMuService.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\pojo\User.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\pojo\cuotimsg.java
+D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\pojo\Score.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\service\MianShiTiMuServiceImpl.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\mapper\UserMapper.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\controller\MianShiTiMuController.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\mapper\KaoShiMapper.java
-D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\controller\StudentController.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\service\LianXiServiceImpl.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\pojo\KaoShi.java
 D:\YIDUKONGJIAN\KJ-manage\src\main\java\com\KongJian\manage\service\WenTiServiceImpl.java

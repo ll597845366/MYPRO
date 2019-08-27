@@ -42,11 +42,7 @@
 	<script src="js/jquery.swipebox.min.js"></script> 
 	 <script src="js/bootstrap.js"></script>
 	 
-	 <!--   <script src="js/SmoothScroll.min.js"></script>
-	<script src="js/jarallax.js"></script> 
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>	
-     -->
+	
          <link href="css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
         <style type="text/css">
         .bor{
@@ -57,44 +53,55 @@
         input[type="checkbox"]{width:22px;height:22px;display: inline-block;text-align: center;vertical-align: middle; line-height: 18px;position: relative;}
 input[type="checkbox"]::before{content: "";position: absolute;top: 0;left: 0;background: #fff;width: 100%;height: 100%;border: 1px solid #d9d9d9}
 input[type="checkbox"]:checked::before{content: "\2713";background-color: #fff;position: absolute;top: 0;left: 0;width:100%;border: 1px solid #e50232;color:#e50232;font-size: 20px;font-weight: bold;}
-    
-        </style>
+      
+      
+      .divborder{
+
+   border-style:solid;
+
+    border-width:3px;
+
+    border-image: -webkit-linear-gradient(#F80, #2ED) 20 20;
+
+            border-image: -moz-linear-gradient(#F80, #2ED) 20 20;
+
+            border-image: -o-linear-gradient(#F80, #2ED) 20 20;
+
+            border-image: linear-gradient(#F80, #2ED) 20 20;
+}
+      </style>
+     
+        
+
 <title >成都天府中心考试系统</title>
 
 </head>
   
-	
-		<div class="w3header" >
-			<div class="container" style="width: 90% ;color: red; " >
-				<nav class="navbar navbar-default" style="background-image: url('images/picgb.jpg');">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<h1><a style="color:#FE9A2E;"> 成都天府中心 </a></h1> 
-					</div>
-					<!-- navbar-header -->
+	<body style="background-color: #f2f8ff"> 
+	<div  style="background-color: black;height: 5%" align="left" >    
+		
+		<div align="left">
+				<nav class="navbar navbar-default" style="background-color: #18b0ff; margin-left: 0%" >
+					
+					
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
-						<ul class="nav navbar-nav navbar-right">
-							 <li ><a  id="sy" class="active" >首页</a></li>
+						<ul class="nav navbar-nav navbar-center">
+							 <li ><a  id="sy" class="active"  style="color:#FFFFFF;">首页</a></li>
 							 <li id="wjdcshow"> </li>
 							  <li id="teacherselect"> </li>
 							  <li class="dropdown">
-							 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" style="color:#FE9A2E;">面试复习 <span class="caret"></span> </a>
+							 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" style="color:#FFFFFF;">面试复习 <span class="caret"></span> </a>
                              <ul class="dropdown-menu">
                              
                              <li ><a  id="mstmfx" style="color:#FE9A2E;">面试复习</a></li>
-                             <li ><a  id="mstmzhuanxiang" style="color:#FE9A2E;">专项练习</a></li>
+                             <li ><a  id="mstmzhuanxiang" style="color:#FE9A2E;">笔试复习</a></li>
                              <li id="mstmadd"></li>
            
             </ul>
             </li>
-							   <li ><a  id="zhanghao" style="color:#FE9A2E;"> 账号信息</a></li>
+							  
 							 <li class="dropdown">
-							 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" style="color:#FE9A2E;">考试相关 <span class="caret"></span> </a>
+							 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" style="color:#FFFFFF;">考试相关 <span class="caret"></span> </a>
                              <ul class="dropdown-menu">
                              <li ><a  id="wdks" style="color:#FE9A2E;">我的考试</a></li>
                              <li><a  id="cjcx" style="color:#FE9A2E;">成绩查询</a></li>
@@ -107,7 +114,7 @@ input[type="checkbox"]:checked::before{content: "\2713";background-color: #fff;p
            
             </ul>
             </li>
-         <li class="dropdown"><a  id="mryl" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" style="color:#FE9A2E;">每日一练 
+         <li class="dropdown"><a  id="mryl" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" style="color:#FFFFFF;">每日一练 
           <span class="caret"></span>
           
           </a>
@@ -117,25 +124,24 @@ input[type="checkbox"]:checked::before{content: "\2713";background-color: #fff;p
                     <li><a  id="lxls" style="color:#FE9A2E;">练习历史</a></li>
                      <li><a  id="cwsj" style="color:#FE9A2E;">错误收集</a></li>
                   
-                   
-           
-           
-          </ul>
+             </ul>
           
           
           
           </li>
-							  <li><a data-toggle="modal" data-target="#login" id="login2" style="color:#FE9A2E;"><span class="glyphicon glyphicon-log-in" id="huanying"></span>登录</a></li>
+							  <li id="mylogin" class="dropdown"><a data-toggle="modal" data-target="#login" id="login2" style="color:#FFFFFF;"><span class="glyphicon glyphicon-log-in" id="huanying"></span>登录</a></li>
          
-           <li><a  id="tuichu" style="color:#FE9A2E;"><span class="	glyphicon glyphicon-remove"></span > 退出登录</a></li>
-           <!-- <li><a  id="gywm" style="color:#FE9A2E;">关于我们</a></li> -->
+         
+           
 						</ul> 
 						<div class="clearfix"> </div>	
 					</div>
+					
+					
 				</nav>
-			</div>  
-		
-<body >
+			
+		</div>
+</div>
 	
 	
 
@@ -191,7 +197,7 @@ input[type="checkbox"]:checked::before{content: "\2713";background-color: #fff;p
  
  
 </div>
-<div class="body" id="pic2" style="margin:  0 5.8%"></div>
+<div class="body" id="pic2" style="margin:  0 5.8%;height: 100%"></div>
 <!-- ----------------------------------------------------------账号信息-------------------------------------------------------------------------------------------------- -->
 <div id="zhanghao1" hidden="true" class="panel panel-default" style="margin: 0  5.8%">
 <div align="center" class="panel-heading">
@@ -313,28 +319,41 @@ input[type="checkbox"]:checked::before{content: "\2713";background-color: #fff;p
     </div>
 </div>
 <!-- -----------------------------------------------查询已发布的考试-------------------------------------------------------------------------------------- -->
-          <div class="panel-heading" style="background-image: url('images/huise.jpg'); margin: 0 5.8%;" id="wdks1" hidden="true">
-              <h4 class="text-center"  > 已发布的考试</h4>
+         
+        <br>
+         <br>
+         <br>
+          <div  style=" margin: 0 5.8%;height: 80%" id="wdks1" hidden="true">
+        
+             
+              <table class="table table-hover" id="wdks2">
+            
+              </table>
               
-              
-              <div  style="background-image: url('images/kaoshi1.jpg') ; margin:0 10%px" >   
-              <br>
+                  <br>
+         
+         <br><br>
+         <br>
+         <br>
+         <br>
+         <br>
                <br>
-                <br>
-                  <div align="center" class="panel-heading" style="font-size: 20px"><span  class="glyphicon glyphicon-send" ><font color="red" id="sfyks" style="font-size: 25px;">您暂时没有发布的考试!</font></span></div>
-                 </div>
-                 <div align="center">
-                <button type="button" class="btn btn-info btn-sm" id="ksks">开始考试</button> 
-                 </div>
-              
-              
-              <div>
-              
-              
-              </div>
+         <br>
+         <br>
+         <br>
+         <br> <br>
+         <br>
+         <br>
+         <br>
+         <br> <br>
+         <br>
+         <br>
+         <br>
+         <br>
           </div>
+          
  <!-- -------------------------------------------考试界面------------------------------------------------------------------------------------ -->         
-          <div   hidden="true" id="ksjm" style="background-image: url('images/kaoshibg.jpg'); margin: 0 5.8%;" >
+          <div    hidden="true" id="ksjm" style="background-image: url('images/kaoshibg.jpg'); margin: 0 5.8%;" >
           
          <h3 align="center"> 开始考试</h3>
          <h6 align="center"> 本次考试时间60分钟请注意考试时间 </h6>
@@ -344,7 +363,7 @@ input[type="checkbox"]:checked::before{content: "\2713";background-color: #fff;p
 								
 							</div>
 						</div>
-						<div  align="center" class="bor" style="background-color: white; margin: 0 5%PX; " >
+						<div  align="center" class="divborder" style="background-color: white; margin: 0 5%PX; " >
 							
 						<div style="font-size: 25px;">
 						
@@ -413,78 +432,26 @@ D.
           </div>
           <div hidden="true"> <a id="realid"></a></div>
           <!-- ---------------------------------------考试成绩查询------------------------------------------------------------------------------------- -->
-          <div id="cjcx1"  hidden="true"  class="panel-footer"  style="margin:0 10%px; " align="center">
-           <h5 style="color:green;" >请在输入框中输入考试名：例如cgb1当堂考试的考试名，输入完成后点击查询就可以看到当堂考试的成绩！(注意考试名为小写)</h5>
+          <div id="cjcx1"  hidden="true"    style="margin:0 5.8%; " align="center"> 
+          <div class="divborder">
+          <table id="cjcx2" class="table table-hover"></table>
+        </div>
+             <br>
           <br>
           <br>
           <br>
+            <br>
           <br>
-          <div align="center" class="input-group input-group-lg" >
-        
-          <div class="input-group input-group-lg" align="center"  style="margin: 1% 5%px;">
-        
-     <select class="form-control"  id="cjcx3">
-
-               <option>cgb1</option>
-                <option>cgb2</option>
-                <option>cgb3</option>
-               <option>cgb4</option>
-			    <option>cgb5</option>
-			   
-			     <option>cgb6</option>
-			      <option>cgb7</option>
-                <option>cgb8</option>
-                <option>cgb9</option>
-               <option>cgb10</option>
-			    <option>cgb11</option>
-			    <option>cgb12</option>
-			    <option>cgb13</option>
-			    <option>cgb14</option>
-			    <option>cgb15</option>
-			    <!-- <option>cgbDay6</option>
-			    <option>cgbDay7</option>
-			    <option>cgbDay8</option>
-			    <option>cgbDay9</option>
-			    <option>cgbDay10</option>
-			    <option>cgbDay11</option>
-			    <option>cgbDay12</option>
-			    <option>cgbDay13</option>
-			    <option>cgbDay14</option>
-			    <option>cgbDay15</option>
-			    <option>cgbDay16</option>
-			    <option>cgbDay17</option>
-			    <option>cgbDay18</option>
-			    <option>cgbDay19</option>
-			    <option>cgbDay20</option>
-			    <option>cgbDay21</option>
-			    <option>cgbDay22</option>
-			    <option>cgbDay23</option>
-			    <option>cgbDay24</option>
-			    <option>cgbDay25</option>
-			    <option>cgbDay26</option>
-			    
-			    <option>cgbDay27</option>
-			    <option>cgbDay28</option>
-			    <option>cgbDay29</option>
-			    <option>cgbDay30</option> -->
-			    </select> 
-      <button type="button" class="btn"  id="cjcx4" style="margin-left: 40%;">查询成绩</button>
-            </div>
-            
-           
-        
-       
-              
-               
-              </div >
-                      
-              <div style="font-size: 25px;color: green;" align="center" hidden="true" id="cjcx2">
-                您在<a style="fcenteront-size: 30px;color: blue;" id="cjcx5">111</a>的考试中取得了<a style="font-size: 35px;color: red;" id="cjcx6">1111</a>分
-              </div>
-              
-              <div align="center" hidden="true" id="gaofen">
-              <img  src="images/gaofen.jpg">
-              </div>
+          <br>
+          <br>
+             <br>
+          <br>
+          <br>
+          <br>
+            <br>
+          <br>
+          <br>
+          <br>
               
             </div>
             <!-- ------------------------------------------------------试卷页面------------------------------------------------------------------------------------------------------------- -->
@@ -512,32 +479,7 @@ D.
 			    <option>cgb13</option>
 			    <option>cgb14</option>
 			    <option>cgb15</option>
-			    <!-- <option>cgbDay6</option>
-			    <option>cgbDay7</option>
-			    <option>cgbDay8</option>
-			    <option>cgbDay9</option>
-			    <option>cgbDay10</option>
-			    <option>cgbDay11</option>
-			    <option>cgbDay12</option>
-			    <option>cgbDay13</option>
-			    <option>cgbDay14</option>
-			    <option>cgbDay15</option>
-			    <option>cgbDay16</option>
-			    <option>cgbDay17</option>
-			    <option>cgbDay18</option>
-			    <option>cgbDay19</option>
-			    <option>cgbDay20</option>
-			    <option>cgbDay21</option>
-			    <option>cgbDay22</option>
-			    <option>cgbDay23</option>
-			    <option>cgbDay24</option>
-			    <option>cgbDay25</option>
-			    <option>cgbDay26</option>
-			    
-			    <option>cgbDay27</option>
-			    <option>cgbDay28</option>
-			    <option>cgbDay29</option>
-			    <option>cgbDay30</option> -->
+			   
 			    </select>  
       <button type="button" class="btn"  id="shijuan2" style="margin-left: 40%px;">生成试卷</button>
       
@@ -587,89 +529,49 @@ D.
             </div>
             
             <!-- -----------------------------------------班级排名页面-------------------------------------------------------------- -->
-             <div id="bjpm1"  hidden="true" style="margin:0 5.8%;"  class="panel-footer">
+             <div id="bjpm1"  hidden="true" style="margin:0 5.8%;" class="divborder" >
             
-             <div class="panel-footer" style="margin:0 5%px;">
-             <span >请选择班级</span>
+           <table class='table table-hover'>
+           <tr>
+           <td>
+             <span >班级</span>
+             </td>
+             <td>
              <select class="form-control" name="bjpm2" id="bjpm2">
-             <option>CGB-1907</option>
-             <option>CGB-1906</option>
-             <option>CGB-1905</option>
-             <option>CGB-1904</option>
-               <option>CGB-1903</option>
-                <option>CGB-1902</option>
-                <option>CGB-1901</option>
-               <option>CGB-1812</option>
-			    <option>CGB-1811</option>
-			   
-			  <option>CGB-1901</option>
+            
 			    </select>  
-			    <div class="panel-footer">
-                <span>请输入考试名(cgb1为第一次周考以此类推):</span>
+			    </td>
+			  
+			  <td>
+               <span>考试名:</span>
+               </td>
+               <td>
            <select class="form-control" name="bjpm3" id="bjpm3">
 
-               <option>cgb1</option>
-                <option>cgb2</option>
-                <option>cgb3</option>
-               <option>cgb4</option>
-			    <option>cgb5</option>
-			   
-			     <option>cgb6</option>
-			      <option>cgb7</option>
-                <option>cgb8</option>
-                <option>cgb9</option>
-               <option>cgb10</option>
-			    <option>cgb11</option>
-			    <option>cgb12</option>
-			    <option>cgb13</option>
-			    <option>cgb14</option>
-			    <option>cgb15</option>
-			 <!--    <option>cgbDay6</option>
-			    <option>cgbDay7</option>
-			    <option>cgbDay8</option>
-			    <option>cgbDay9</option>
-			    <option>cgbDay10</option>
-			    <option>cgbDay11</option>
-			    <option>cgbDay12</option>
-			    <option>cgbDay13</option>
-			    <option>cgbDay14</option>
-			    <option>cgbDay15</option>
-			    <option>cgbDay16</option>
-			    <option>cgbDay17</option>
-			    <option>cgbDay18</option>
-			    <option>cgbDay19</option>
-			    <option>cgbDay20</option>
-			    <option>cgbDay21</option>
-			    <option>cgbDay22</option>
-			    <option>cgbDay23</option>
-			    <option>cgbDay24</option>
-			    <option>cgbDay25</option>
-			    <option>cgbDay26</option>
-			    
-			    <option>cgbDay27</option>
-			    <option>cgbDay28</option>
-			    <option>cgbDay29</option>
-			    <option>cgbDay30</option> -->
+               
+			
 			    </select>  
-             </div >
-             <div class="panel-heading">
+            </td>
+             <td>
              <button type="button" class="btn btn-info btn-sm" id="bjpm4" >查询排名</button>
-             </div>
-             <div class="panel-heading" id="bjpm5" hidden="true">
-              <div class="panel-heading" id="bjpm6" hidden="true"></div>
+           
+           
             
               
               
-             
+           
               <button type="button" class="btn btn-info btn-sm" id="bjpm7" >导出排名</button>
-               <button type="button" class="btn btn-info btn-sm" id="bjpm8" >返回查询</button>
+             
+              
+              <button type="button" class="btn btn-info btn-sm" id="bjpm8" >返回查询</button>
+              
               <a id="bjpmmsg" hidden="true"></a>
-             </div>
-             </div>
-             
-             
+          
+          </td>
+             </tr>
+             </table>
               </div>
-              <!-- 发布考试界面的div  具体的页面已由后台接收-->
+              
               <div class="panel-heading" id="fabukaoshi"></div>
           
 <script type="text/javascript">
@@ -695,7 +597,7 @@ function wjdc(){
 			 $("#zhanghao1").hide();
 			 $("#ksjm").hide();
 			 $("#cjcx1").hide();
-			 $("#cjcx2").hide();  
+			
 			 $("#shijuan").hide();
 			 $("#fabukaoshi").hide();
 			}
@@ -721,7 +623,7 @@ $("#wwclx").click(function(){
  			$("#ksjm").hide();
  			$("#zhanghao1").hide();
  			$("#cjcx1").hide();
- 			$("#cjcx2").hide();
+ 			
  			$("#shijuan").hide();
  			$("#fabukaoshi").hide();
             
@@ -763,7 +665,7 @@ function yemian(){
 			 $("#zhanghao1").hide();
 			 $("#ksjm").hide();
 			 $("#cjcx1").hide();
-			 $("#cjcx2").hide();  
+			
 			 $("#shijuan").hide();
 			 $("#fabukaoshi").hide();
 			}
@@ -835,13 +737,13 @@ function bjpm(classname,ksname){
 			}else{
 				
                  for(var i=1;i<=len;i++){
-                     var s=result[i-1][ksname];
+                     
                 	 html += "<tr class='active'>";
                 	 html +=     "<td >" + i +"</td>"
                          html +=     "<td >" + result[i-1].userName + "</td>"
                           html +=     "<td >" + result[i-1].banji + "</td>"
-                          html +=     "<td >" + ksname + "</td>"
-                          html +=     "<td >" + s+ "</td>"
+                          html +=     "<td >" + result[i-1].kaoshiName + "</td>"
+                          html +=     "<td >" + result[i-1].score+ "</td>"
                          html += "</tr>";
                     
                      }
@@ -862,11 +764,12 @@ function bjpm(classname,ksname){
 }
 
 $("#bjpm").click(function(){
-	var loginUsername=$("#loginUsername").val();
-    var userName=$("#login2").text();
-    if(userName=="登录"||loginUsername==''){
+	var loginUsername=getCookie('loginUsername');
+  
+    if(loginUsername==""||loginUsername==null){
          alert("请先登录");
         }else{
+            bjpmselects(loginUsername);
 $("#bjpm1").show();
 $("#pic").hide();
 $("#pic2").hide();
@@ -875,11 +778,23 @@ $("#wdks1").hide();
 $("#zhanghao1").hide();
 $("#ksjm").hide();
 $("#cjcx1").hide();
-$("#cjcx2").hide();  
+
 $("#shijuan").hide();
 $("#fabukaoshi").hide();
 }
 });
+function bjpmselects(loginUsername){
+$.ajax({
+	url:"bjpmselects",
+	type:"post",
+	dataType:"json",
+	data:{loginUsername,loginUsername},
+	success:function(result){
+		alert(result);
+		}
+});
+	
+}
 zongfen=0;
  $("#login1").click(function(){
 
@@ -911,15 +826,27 @@ alert("账号或密码错误");
 				}else{
 
               var userName=result.userName;
-              $("#huanying").text("欢迎您:");
+             
               $("#login2").text(userName);
               $("#login2").attr('data-toggle','#');
               $('#login').modal('hide');
-              if(result.status==0){
+              if(result.status==1){
+                  setCookie("loginUsername",loginUsername);
+                  
                         var wjdc1="<a  id='wjdc' style='color:#FE9A2E;' onclick='wjdc()' > 问卷调查</a>";
+                        
+                        var mymsg="<a  class='dropdown-toggle' data-toggle='dropdown' role='button' "+
+								 "aria-expanded='false' aria-haspopup='true' style='color:#FFFFFF;'>"+userName+"<span class='caret'></span> </a>"+
+	                             "<ul class='dropdown-menu'>"+
+	                             "<li ><a   style='color:#FE9A2E;' onclick='zhanghao()'> 账号信息</a></li>"+
+	                             "<li><a   style='color:#FE9A2E;' onclick='tuichu()'>退出登录</a></li>"+
+	                             "</ul>";
+	                             $("#mylogin").html(mymsg);
+                        
                         $("#wjdcshow").html(wjdc1);
                   }else if(result.status>=3){
-                        
+                	  setCookie("loginUsername",loginUsername);
+                     
              var teacherselect=" <a  class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' aria-haspopup='true' style='color:#FE9A2E;'>项目经理选项<span class='caret'></span> </a>"+
              "<ul class='dropdown-menu'>"+
             " <li ><a  id='wdks' style='color:#FE9A2E;' onclick='wjdcxq()' >问卷调查详情</a></li>"+
@@ -928,6 +855,13 @@ alert("账号或密码错误");
              var addmstm="<a  id='mstmadd1' style='color:#FE9A2E;'>添加题目</a>";
              $("#teacherselect").html(teacherselect);
              $("#mstmadd").html(addmstm);
+             var mymsg="<a  class='dropdown-toggle' data-toggle='dropdown' role='button' "+
+			 "aria-expanded='false' aria-haspopup='true' style='color:#FFFFFF;'>"+userName+"<span class='caret'></span> </a>"+
+             "<ul class='dropdown-menu'>"+
+             "<li ><a   style='color:#FE9A2E;' onclick='zhanghao()'> 账号信息</a></li>"+
+             "<li><a   style='color:#FE9A2E;' onclick='tuichu()'>退出登录</a></li>"+
+             "</ul>";
+             $("#mylogin").html(mymsg);
                       }
               
 
@@ -960,22 +894,28 @@ $.ajax({
         	$("#bjpm1").hide();
         	$("#ksjm").hide();
         	$("#cjcx1").hide();
-        	$("#cjcx2").hide();
+        	
         	$("#shijuan").hide();
         	$("#fabukaoshi").hide();
 		    }});
 
 	
 });
-$("#tuichu").click(function(){
-	 location.reload();
 
+function tuichu(){
 	
-});
+	
+	delCookie("loginUsername");
+	delCookie("xztm");
+	delCookie("ksname");
+	
+	location.reload();
+	
+}
 
 
 
-$("#zhanghao").click(function(){
+function zhanghao(){
 	
       var loginUsername=$("#loginUsername").val();
       var userName=$("#login2").text();
@@ -998,7 +938,7 @@ $.ajax({
             	$("#bjpm1").hide();
             	$("#ksjm").hide();
             	$("#cjcx1").hide();
-            	$("#cjcx2").hide();
+            	
             	$("#shijuan").hide();
             	$("#fabukaoshi").hide();
             	
@@ -1021,7 +961,7 @@ $.ajax({
 	
 });
           }
-	});
+	}
 
 
 $("#fanhui1").click(function(){
@@ -1033,7 +973,7 @@ $("#fanhui1").click(function(){
 	$("#zhanghao1").hide();
 	$("#ksjm").hide();
 	$("#cjcx1").hide();
-	$("#cjcx2").hide();  
+	 
 	$("#shijuan").hide();
 	$("#bjpm1").hide();
 	$("#pic2").hide();
@@ -1144,10 +1084,11 @@ function xiugai(password,newpassword,tel,loginUsername){
 }
 $("#wdks").click(function(){
 
-	var loginUsername=$("#loginUsername").val();
-	var userName=$("#login2").text();
+	var loginUsername=getCookie("loginUsername");
 	
-	if(loginUsername!=""&&userName!="登录"){
+
+	
+	if(loginUsername!=""&&loginUsername!=null&&loginUsername!="null"){
 		$("#bjpm1").hide();
 		$("#pic").hide();
 		$("#wdks1").show();
@@ -1155,10 +1096,10 @@ $("#wdks").click(function(){
 		$("#zhanghao1").hide();
 		$("#pic2").hide();
 		$("#cjcx1").hide();
-		$("#cjcx2").hide();
+	
 		$("#shijuan").hide();
 		$("#fabukaoshi").hide();
-     xsks(loginUsername);
+         xsks(loginUsername);
          
 
 		}else{
@@ -1176,12 +1117,23 @@ function xsks(loginUsername){
 	 		datatype:'JSON',
 	 		data:{loginUsername:loginUsername},
 	 		success:function(result){
-		 		if(result=="false"){
+		 		if(result==""||result==null){
 
-                    alert("您暂时没有发布的考试！");
-
+                   var html="<tr><td><h4>你暂时没有发布的考试</h4></td></tr>";
+                   $("#wdks2").html(html);
 			 		}else{
-                          $("#sfyks").text(result);
+                          var html="<tr><td><h6>#<h6></td>"+
+                                        "<td><h6>考试名<h6></td>"+
+                                        "<td><h6>考试班级<h6></td>"+
+                                        "<td><h6>考试开启时间<h6></td>"+
+                                        "<td><h6>操作<h6></td></tr>"+
+                                     "<tr><td><h6>1<h6></td>"+
+                                        "<td><h6>"+result.kaoshiName+"<h6></td>"+
+                                        "<td><h6>"+result.kaoshiClass+"<h6></td>"+
+                                        "<td><h6>"+result.ksTime+"<h6></td>"+
+                                        "<td> <button type='button' class='btn btn-danger' id='ksks' onclick='ksks(this)'>开始考试</button></td></tr>";
+                          $("#wdks2").html(html);
+                                        
                          
 				 		}
 	 		}
@@ -1199,35 +1151,60 @@ $("#sy").click(function(){
 			$("#ksjm").hide();
 			$("#zhanghao1").hide();
 			$("#cjcx1").hide();
-			$("#cjcx2").hide();
+			
 			$("#shijuan").hide();
 			$("#fabukaoshi").hide();
 
 		});
-$("#ksks").click(function(){
+function ksks(a){
+	var ksname=$(a).parent().parent().find("td:eq(1)").text();
+$.ajax({
+url:"isksTime",
+type:"post",
+dataType:"json",
+data:{ksname:ksname},
+success:function(result){
 
-	var sfyks=$("#sfyks").text();
-	var xztm=$("#xztm").text();
-	if(sfyks=="您暂时没有发布的考试!"){
-		alert("您暂时没有发布的考试!");
+	 if(result==1){
+		 
+			setCookie("ksname",ksname);
+			var xztm=$("#xztm").text();
+			tmzs(ksname);
+			if(xztm==0||xztm==""){
+				setCookie("xztm",1);
+				
+				xztm=1;
+				xztm1(xztm);
+				}else{
+					xztm1(xztm);
 
-		}else{
-	$("#pic").hide();
-	$("#wdks1").hide();
-	$("#zhanghao1").hide();
-	$("#ksjm").show();
-	$("#cjcx1").hide();
-	$("#cjcx2").hide();
-	$("#shijuan").hide();
-	$("#bjpaiming").hide();
-	$("#fabukaoshi").hide();
-	var ksname=$("#sfyks").text();
+					}
+			
+			$("#pic").hide();
+			$("#wdks1").hide();
+			$("#zhanghao1").hide();
+			$("#ksjm").show();
+			$("#cjcx1").hide();
+			
+			$("#shijuan").hide();
+			$("#bjpaiming").hide();
+			$("#fabukaoshi").hide();
+
+	 }else{
+
+     alert("考试时间未到请稍后再试!");
+
+
+		 }
 	
-	tmzs(ksname);
-	xztm1(xztm);
-		}
+}
 
+	
 });
+	
+
+	
+}
 function tmzs(ksname){
  $.ajax({
       
@@ -1236,7 +1213,8 @@ function tmzs(ksname){
 		datatype:'JSON',
 		data:{ksname:ksname},
 		success:function(result){
-	 		    if(result==0){
+			
+	 		    if(result==0||result==null||result==""){
 
                          alert("题库中没有题目请联系项目经理！");
 		 		    }
@@ -1256,35 +1234,43 @@ function tmzs(ksname){
 
 	
 }
-function xztm1(xztm){
-	var tmzs=$("#tmzs").text();
-	var xztm=$("#xztm").text();
-	var ksname=$("#sfyks").text();
-	 if(tmzs==xztm){
+function xztm1(){
+	var tmzs=parseInt($("#tmzs").text());
+	var xztm=parseInt(getCookie("xztm"));
+
+   
+	var ksname=getCookie("ksname");
+	
+	 if(tmzs!=null&&tmzs!=""&&((tmzs+1)==xztm)){
 		 
-         alert("您已完成所以题目!您现在可以查询成绩本页面将关闭");
+        
          $("#pic").show();
  		$("#wdks1").hide();
  		$("#ksjm").hide();
  		$("#zhanghao1").hide();
  		$("#cjcx1").hide();
- 		$("#cjcx2").hide();
+ 		
  		$("#shijuan").hide();
  		$("#bjpm1").hide();
  		$("#fabukaoshi").hide();
  		jiluzongfen(zongfen);
-         
-         
+ 		 alert("恭喜你提交成功，系统正在阅卷中");
+         delCookie("xztm");
+      
+         delCookie("ksname");
+     
 	    }else{
-	$.ajax({
 	      
+	$.ajax({
+	     
 	     url:"xztm",
 		type:"post",
 		datatype:'JSON',
 		data:{xztm:xztm,ksname:ksname},
 		success:function(result){
-			$("#xztm").text(result.tmid);
 			
+			$("#xztm").text(result.tmid);
+			setCookie("xztm",(result.tmid+1));
 			$("#timu").html(result.timu);
 			
 			$("#select1").html(result.xuanXiang1);
@@ -1294,7 +1280,7 @@ function xztm1(xztm){
 			$("#realid").text(result.id);
 			
 			
-			
+				
 	 		   
 		}
 
@@ -1309,8 +1295,9 @@ function xztm1(xztm){
 $("#xyt").click(function(){
 
 	var xztm=$("#xztm").text();
-	var ksname=$("#sfyks").text();
-	var loginUsername=$("#loginUsername").val();
+	var ksname=getCookie("ksname");
+	
+	var loginUsername=getCookie("loginUsername");
 	var daan =[];//定义一个数组    
     $('input[name="A"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数    
     daan.push($(this).val());//将选中的值添加到数组chk_value中    
@@ -1318,14 +1305,15 @@ $("#xyt").click(function(){
     });
   
    var realid= $("#realid").text();
-   
+
     if(daan.length==0){
           alert("您还没有选择答案!");
 
         }else{
             yuejuan(daan,realid);
             jiludaan(daan,xztm,loginUsername,ksname);
-        	xztm1(xztm);
+            
+        	xztm1();
         	 $(":checkbox[type='checkbox']").prop("checked", false);
         	 
             }
@@ -1373,7 +1361,7 @@ function yuejuan(daan,realid){
 //将总分统计入库
 function jiluzongfen(zongfen){
 	var loginUsername=$("#loginUsername").val();
-	var ksname=$("#sfyks").text();
+	var ksname=getCookie("ksname");
 	$.ajax({
 	      
 	     url:"fenshu",
@@ -1383,8 +1371,8 @@ function jiluzongfen(zongfen){
 		traditional:true,
 		success:function(result){
                 
-                alert(result);
-                $("#sfyks").text("您暂时没有发布的考试!");
+                
+               
 			}
            
 	});  
@@ -1393,17 +1381,36 @@ function jiluzongfen(zongfen){
 }
 //成绩查询
 $("#cjcx").click(function(){
-	 var loginUsername=$("#loginUsername").val();
-     var userName=$("#login2").text();
-     if(userName=="登录"||loginUsername==''){
+	 var loginUsername=getCookie("loginUsername");
+    
+    
+     if(loginUsername==''||loginUsername==null||loginUsername=="null"){
           alert("请先登录");
          }else{
+$.ajax({
+url:"myscore",
+type:"post",
+dataType:"json",
+data:{loginUsername:loginUsername},
+success:function(result){
+	 var html="<tr><td>#</td><td>用户名</td><td>考试名</td><td>分数</td><tr>";
+	 for(var i=0;i<result.length;i++){
+      html=html+"<tr><td>"+(i+1)+"</td><td>"+result[i].loginUsername+"</td><td>"+result[i].kaoshiName+"</td><td>"+result[i].score+"</td></tr>";
+  $("#cjcx2").html(html);
+		 }
+	
+}
+
+
+	
+});
+             
 	$("#pic").hide();
 	$("#wdks1").hide();
 	$("#zhanghao1").hide();
 	$("#ksjm").hide();
 	$("#cjcx1").show();
-	$("#cjcx2").hide();
+
 	$("#pic2").hide();
 	$("#shijuan").hide();
 	$("#bjpm1").hide();
@@ -1411,36 +1418,7 @@ $("#cjcx").click(function(){
          }
 	
 });
-$("#cjcx4").click(function(){    
-  
-	 var ksname=$("#cjcx3").val();
-	 var loginUsername=$("#loginUsername").val();
-	 kscj(ksname,loginUsername);
-});
-	function kscj(ksname,loginUsername){
 
-		$.ajax({
-		      
-		     url:"kscj",
-			type:"post",
-			datatype:'JSON',
-			data:{loginUsername:loginUsername,ksname:ksname},
-			traditional:true,
-			success:function(result){
-				if(result==""){
-
-                        alert("你并未参加该次考试或该考试不存在");
-					}else{
-	                $("#cjcx5").text(ksname);
-	                $("#cjcx6").text(result);
-	                $("#cjcx2").show();
-	                $("#gaofen").show();
-			}
-				}
-	           
-		});  
-
-		}
 
 	$("#fbks").click(function(){   
 
@@ -1493,7 +1471,7 @@ $("#cjcx4").click(function(){
 		   		$("#zhanghao1").hide();
 		   		$("#ksjm").hide();
 		   		$("#cjcx1").hide();
-		   		$("#cjcx2").hide();
+		   		
 		   		$("#shijuan").hide();
 		   		$("#bjpm1").hide();
 		   		
@@ -1514,7 +1492,7 @@ $("#cjcx4").click(function(){
 	$("#zhanghao1").hide();
 	$("#ksjm").hide();
 	$("#cjcx1").hide();
-	$("#cjcx2").hide();
+
 	$("#pic2").hide();
 	$("#bjpm1").hide();
 	$("#fabukaoshi").hide();
@@ -1723,7 +1701,56 @@ function wjdcxq(){
 
 
  $(function(){ 
-
+        var loginUsername=getCookie("loginUsername");
+        if(loginUsername!=null&&loginUsername!=""){
+            $.ajax({
+                  url:"findUser",
+                  type:"post",
+                  dataType:"json",
+                  data:{loginUsername:loginUsername},
+                  success:function(result){
+                	  var userName=result.userName;
+                      
+                      $("#login2").text(userName);
+                      $("#login2").attr('data-toggle','#');
+                      $('#login').modal('hide');
+                     
+                       if(result.status==1){
+                         
+                          
+              var wjdc1="<a  id='wjdc' style='color:#FE9A2E;' onclick='wjdc()' > 问卷调查</a>";
+                                
+               var mymsg="<a  class='dropdown-toggle' data-toggle='dropdown' role='button' "+
+        "aria-expanded='false' aria-haspopup='true' style='color:#FFFFFF;'>"+userName+"<span class='caret'></span> </a>"+
+        "<ul class='dropdown-menu'>"+
+       "<li ><a   style='color:#FE9A2E;' onclick='zhanghao()'> 账号信息</a></li>"+
+     "<li><a   style='color:#FE9A2E;' onclick='tuichu()'>退出登录</a></li>"+
+      "</ul>";
+        	                       $("#mylogin").html(mymsg);
+                                   $("#wjdcshow").html(wjdc1);
+                                  }else if(result.status>=3){
+                        	  
+                             
+                     var teacherselect=" <a  class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' aria-haspopup='true' style='color:#FE9A2E;'>项目经理选项<span class='caret'></span> </a>"+
+                     "<ul class='dropdown-menu'>"+
+                    " <li ><a  id='wdks' style='color:#FE9A2E;' onclick='wjdcxq()' >问卷调查详情</a></li>"+
+                    
+                                       "</ul>";
+                     var addmstm="<a  id='mstmadd1' style='color:#FE9A2E;'>添加题目</a>";
+                     $("#teacherselect").html(teacherselect);
+                     $("#mstmadd").html(addmstm);
+                     var mymsg="<a  class='dropdown-toggle' data-toggle='dropdown' role='button' "+
+        			 "aria-expanded='false' aria-haspopup='true' style='color:#FFFFFF;'>"+userName+"<span class='caret'></span> </a>"+
+                     "<ul class='dropdown-menu'>"+
+                     "<li ><a   style='color:#FE9A2E;' onclick='zhanghao()'> 账号信息</a></li>"+
+                     "<li><a   style='color:#FE9A2E;' onclick='tuichu()'>退出登录</a></li>"+
+                     "</ul>";
+                     $("#mylogin").html(mymsg);
+                              }
+                      }
+                  
+            });
+            }
 		var mW=600;
 		var mH=600;
 		var canvas = document.createElement('canvas');
@@ -1898,7 +1925,7 @@ function drawCircle(ctx,mData,mCenter){
  	 		$("#zhanghao1").hide();
  	 		$("#pic2").show();
  	 		$("#cjcx1").hide();
- 	 		$("#cjcx2").hide();
+ 	 		
  	 		$("#shijuan").hide();
  	 		$("#fabukaoshi").hide();
  	   		}
@@ -1937,7 +1964,7 @@ function drawCircle(ctx,mData,mCenter){
  	 		$("#zhanghao1").hide();
  	 		$("#pic2").show();
  	 		$("#cjcx1").hide();
- 	 		$("#cjcx2").hide();
+ 	 		
  	 		$("#shijuan").hide();
  	 		$("#fabukaoshi").hide();
  	   		}
@@ -1956,12 +1983,59 @@ function drawCircle(ctx,mData,mCenter){
 
 </script>
 
- <div class="navbar-fixed-bottom" style="margin: 0 5.8%" align="center">
+<div class="footer">
 		
 			
-	<p>copy-2019-597845366@qq.com-1.0.1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tel:17726443713 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-		WeChat:17726443713&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QQ:597845366</p>  
-	</div> 
+			
+			<div class="clearfix">
+			 </div> 
+		</div>
+	</div>
+	<div class="footer-copy" style=" background-color:#18b0ff;height: 5%;">
+		<div class="container" style="height: 50%;">
+			<p>'http://www.hcpedit.com <a href="#" class="glyphicon glyphicon-qrcode" style="height: 20px;width: 20px;" id="mywechat"></a><span id="mywechat2" hidden="true"><img class="img-thumbnail" src="images/mywechat.png" alt="left" name="1" id="mywechat1" ></span> </p>
+			
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+$("#mywechat").click(function(){
+
+	var hi=$("#mywechat1").attr("name");
+
+	if(hi==1){
+		$("#mywechat2").show();
+		$("#mywechat1").attr("name","0");
+	}else{
+		$("#mywechat2").hide();
+		$("#mywechat1").attr("name","1");
+		
+	}
+	
+});
+//获取cookie
+function getCookie(name)
+{
+var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+if(arr=document.cookie.match(reg))
+return unescape(arr[2]);
+else
+return null;
+}
+//设置cookie
+function setCookie(name,value)
+{
+var Days = 30;
+var exp = new Date();
+exp.setTime(exp.getTime() + Days*24*60*60*1000);
+document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+//删除cookie
+function delCookie(name){
+	setCookie(name,null);
+
+}
+	</script>
 	
 </body>
 </html>

@@ -16,104 +16,102 @@
         <script type="text/javascript"  src="jquery/jquery-3.3.1.min.js"></script>
      
         <style >  
-        .abc{color: red;}
+        .abc{color:#1E90FF;}
         </style>
+        <style type="text/css">
+
+.divborder{
+
+border-style:solid;
+
+border-width:3px;
+
+border-image: -webkit-linear-gradient(#F80, #2ED) 20 20;
+
+            border-image: -moz-linear-gradient(#F80, #2ED) 20 20;
+
+            border-image: -o-linear-gradient(#F80, #2ED) 20 20;
+
+            border-image: linear-gradient(#F80, #2ED) 20 20;
+}
+
+</style>
 </head>
-<body style="background-image: url('images/sign.jpg');">
+<body >
 
 
 
- <h1 align="center" style="color: white; font-size:50px " >成都天府中心学员周考注册</h1>
-<br>
+ 
 
 
- <form   action="Resign" method="post" onsubmit="return toVaild()"><!-- toVaild()函数验证是否可以提交 -->
 
-<div  class="input-group" style="margin-left: 570px">
- <span class="input-group-addon" style="width: 85px ; background-color: orange; " >账号</span>
-<input  type="text" class="form-control" placeholder="请输登录名，只能是数字英文或两者的组合" name="loginUsername" id="loginUsername" style="width: 300px;" > 
+<div align="left" style="margin: 0 15% ;border-radius: 6px;" class="divborder" >
+<h2 align="center"> WELCOME SIGN</h2>
+ <form   action="Resign" method="post" onsubmit="return toVaild()" style="margin: 0 5.8;" ><!-- toVaild()函数验证是否可以提交 -->
+    <div  class="input-group"   style="margin: 0 28%">
+    <span class="input-group-addon" >账号</span>
+    <input  type="text" class="form-control" placeholder="请输登录名，只能是数字英文或两者的组合" name="loginUsername" id="loginUsername" > 
+   
+</div>
+<div style="margin: 0 30%">
 <span class="abc" id='errorMsg' ></span>
 </div>
 <br>
 <br>
-<div  class="input-group" style="margin-left: 570px">
- <span class="input-group-addon" style="width: 85px; background-color: orange;">密码</span>
-<input type="password" class="form-control" placeholder="请输您要注册的密码" name="password" style="width: 300px;" id="password">
+<div  class="input-group"   style="margin: 0 28%">
+ <span class="input-group-addon" >密码</span>
+<input type="password" class="form-control" placeholder="请输您要注册的密码" name="password"  id="password">
+
+
+
+</div>
+<div style="margin: 0 30%">
 <span class="abc" id='passwordMsg' ></span>
+</div>
+<br>
+<br>
+<div  class="input-group"  style="margin: 0 28%">
+  <span class="input-group-addon" >密码</span>
+<input type="password" class="form-control" placeholder="再次确认密码" name="repassword" " id="repassword" >
 
 
 </div>
-
-<br>
-<br>
-<div  class="input-group" style="margin-left: 570px">
- <span class="input-group-addon" style="width: 85px; background-color: orange;">确认密码</span>
-<input type="password" class="form-control" placeholder="再次确认密码" name="repassword" style="width: 300px;" id="repassword">
+<div style="margin: 0 30%">
 <span class="abc" id='repasswordMsg' ></span>
+</div>
+<br>
+<br>
 
+
+
+<div  class="input-group" style="margin: 0 28%" >
+ <span class="input-group-addon" >	TEL</span>
+<input  type="text" class="form-control" placeholder="请输入正确的电话号码" name="tel" id="tel"  > 
 
 </div>
-
-<br>
-<br>
-<div  class="input-group" style="margin-left: 570px">
- <span class="input-group-addon" style="width: 85px ; background-color: orange; " >姓名</span>
-<input  type="text" class="form-control" placeholder="请输入考试姓名，如果姓名正确您将无法得到成绩" name="userName" id="userName" style="width: 300px;" > 
-<span class="abc" id='errorMsg' ></span>
-</div>
-
-<br>
-<br>
-<div  class="input-group" style="margin-left: 570px">
- <span class="input-group-addon" style="width: 85px ; background-color: orange; " >电话</span>
-<input  type="text" class="form-control" placeholder="请输入正确的电话号码" name="tel" id="tel" style="width: 300px;" > 
+<div style="margin: 0 30%">
 <span class="abc" id='telerrorMsg' ></span>
 </div>
 <br>
 <br>
-<div  class="input-group" style="margin-left: 570px">
- <span class="input-group-addon" style="width: 85px ; background-color: orange; " >班级</span>
-<select class="form-control" name="banji" id="banji">
 
-
-           
-            
-            <option>CGB-1903</option>
-            <option>CGB-1904</option>
-            <option>CGB-1905</option>
-            <option>CGB-1906</option>
-             <option>CGB-1907</option>
-            <option>JSD-1903</option>
-			<option>JSD-1904</option>
-			<option>JSD-1905</option>
-			<option>JSD-1906</option>
-			 <option>JSD-1907</option>
-		</select>
-
-<span class="abc" id='errorMsg' ></span>
-</div>
 
 
 
  
  
  <br>
- <!-- <div align="center"  class="form-inline">
  
- <span> <input  type="text" class="form-control" placeholder="请输入验证码" name="yzm" id="yzm" style="width: 180px;" > 
- <img  src="yzpic" id="yzpic">
- <a id="repic" onclick='changepic()'>看不清？点击刷新</a></span>
- </div>
- <div align="center"> -->
  
  <div align="center">
  <button class="btn btn-primary" type="submit">SUBMIT NOW</button>
  </div>
- </div>
+ 
  
  
  
  </form>
+</div>
 
 <script type="text/javascript">
 
@@ -248,8 +246,8 @@ var loginUsername=$("#loginUsername").val();
 var password=$("#password").val();
 var repassword=$("#repassword").val();
 var tel=$("#tel").val();
-var userName=$("#userName").val();
- if(loginUsername!=''&&password!=''&&repassword!=''&&tel!=''&&userName!=''){
+
+ if(loginUsername!=''&&password!=''&&repassword!=''&&tel!=''){
 return true;
 
 	 }else{
@@ -266,12 +264,7 @@ var src=yzpic.attr("src");
 yzpic.attr("src",src+"?s=1");
 	
 }
-$("#yzm").focusout(function(){
 
-
-
-	
-});
 </script>
 </body>
 </html>

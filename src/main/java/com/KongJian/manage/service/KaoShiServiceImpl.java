@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.KongJian.manage.mapper.KaoShiMapper;
+import com.KongJian.manage.pojo.BJPM;
 import com.KongJian.manage.pojo.KaoShi;
+import com.KongJian.manage.pojo.Score;
 import com.KongJian.manage.pojo.User;
 import com.KongJian.manage.pojo.cuotimsg;
 @Service
@@ -17,19 +19,19 @@ public class KaoShiServiceImpl  implements KaoShiService{
 	@Autowired
 	KaoShiMapper kaoShiMapper;
 	@Override
-	public String xsks(String loginUsername) {
+	public KaoShi xsks(String loginUsername) {
 		
 		return kaoShiMapper.xsks(loginUsername);
 	}
 	@Override
-	public List<KaoShi> tmzs(String kaoshiName) {
+	public Integer tmzs(String kaoshiName) {
 		
 		return kaoShiMapper.tmzs(kaoshiName);
 	}
 	@Override
-	public KaoShi xztm(Integer tmid) {
+	public KaoShi xztm(String ksname,Integer xztm) {
 		
-		return kaoShiMapper.xztm(tmid);
+		return kaoShiMapper.xztm(ksname,xztm);
 	}
 	@Override
 	public KaoShi zqda(Integer id) {
@@ -37,8 +39,8 @@ public class KaoShiServiceImpl  implements KaoShiService{
 		return kaoShiMapper.zqda(id);
 	}
 	@Override
-	public void fenshu(Integer zongfen, String loginUsername, String ksname) {
-		kaoShiMapper.fenshu(zongfen, loginUsername, ksname);
+	public void fenshu(Integer score, String loginUsername, String ksname) {
+		kaoShiMapper.fenshu(score, loginUsername, ksname);
 		
 	}
 	@Override
@@ -69,7 +71,7 @@ public class KaoShiServiceImpl  implements KaoShiService{
 		return kaoShiMapper.sjed(kaoshiName, timid);
 	}
 	@Override
-	public List<User> bjpm(String ksname, String classname) {
+	public List<BJPM> bjpm(String ksname, String classname) {
 		
 		return kaoShiMapper.bjpm(ksname, classname);
 	}
@@ -149,6 +151,26 @@ public class KaoShiServiceImpl  implements KaoShiService{
 	public KaoShi ctjiexi(String ksname, Integer tmid) {
 		// TODO Auto-generated method stub
 		return kaoShiMapper.ctjiexi(ksname, tmid);
+	}
+	@Override
+	public Score findScore(String loginUsername, String ksname) {
+		// TODO Auto-generated method stub
+		return kaoShiMapper.findScore(loginUsername, ksname);
+	}
+	@Override
+	public void updateScore(Integer score, String loginUsername, String ksname) {
+		kaoShiMapper.updateScore(score, loginUsername, ksname);
+		
+	}
+	@Override
+	public List<Score> myscore(String loginUsername) {
+		// TODO Auto-generated method stub
+		return kaoShiMapper.myscore(loginUsername);
+	}
+	@Override
+	public String isksTime(String ksname) {
+		// TODO Auto-generated method stub
+		return kaoShiMapper.isksTime(ksname);
 	}
 
 }

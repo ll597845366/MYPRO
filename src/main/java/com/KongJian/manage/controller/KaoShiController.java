@@ -5,7 +5,10 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.http.HttpResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,7 +29,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.KongJian.manage.pojo.BJPM;
 import com.KongJian.manage.pojo.KaoShi;
+import com.KongJian.manage.pojo.Score;
 import com.KongJian.manage.pojo.User;
 import com.KongJian.manage.pojo.cuotimsg;
 import com.KongJian.manage.service.KaoShiService;
@@ -43,19 +48,25 @@ public class KaoShiController {
 	
          @RequestMapping("xsks")
          @ResponseBody
-	public String xsks(String loginUsername) {
-		String ksname=kaoShiServie.xsks(loginUsername);
+	public KaoShi xsks(String loginUsername) {
+		KaoShi ks=kaoShiServie.xsks(loginUsername);
+		String ksname="";
+		try {
+			ksname=ks.getKaoshiName();
+		} catch (Exception e) {
+			return null;
+		}
 		
 		
 		Integer chengji=kaoShiServie.kscore(loginUsername, ksname);
-		System.err.println(chengji);
+		
 		if(ksname!=null&&(chengji==null||chengji==0)) {
 			
-			return ksname;
+			return ks;
 			
 		}else {
 			
-			return "false";
+			return null;
 			
 		}
 		
@@ -69,19 +80,15 @@ public class KaoShiController {
          @RequestMapping("tmzs")
          @ResponseBody
          public Integer tmzs(String ksname) {
-			System.err.println(ksname);
-        Integer tmzs=0;	 
+			
+           Integer tmzs=0;	 
         
-        List<KaoShi> list= kaoShiServie.tmzs(ksname);
+         tmzs= kaoShiServie.tmzs(ksname);
+       
+        if(tmzs==null||tmzs==0) {
         
-        if(list!=null) {
-         for (KaoShi kaoShi : list) {
-        	 System.out.println();
-				 tmzs++;
-        	   
-			}
-         System.out.println(tmzs);
-        	return tmzs;
+         
+        	return 0;
         }else {
         	  
         	return tmzs;
@@ -103,11 +110,12 @@ public class KaoShiController {
          public KaoShi xztm(Integer xztm,String ksname) {
         	 
         	 
-        	 List<KaoShi> list=kaoShiServie.tmzs(ksname);
-        	 KaoShi ks=list.get(xztm);
+        	 KaoShi kaoshi=kaoShiServie.xztm(ksname,xztm);
+        	 //KaoShi ks=list.get(xztm);
+        	 
         	
         	
-			return ks;
+			return kaoshi;
         	 
         	 
         	 
@@ -157,16 +165,41 @@ public class KaoShiController {
 			
 @RequestMapping("fenshu")    
 @ResponseBody
-public String fenshu(Integer zongfen,String loginUsername,String ksname) {
+public void fenshu(Integer zongfen,String loginUsername,String ksname) {
+	Score score=kaoShiServie.findScore(loginUsername, ksname);
 	
-	kaoShiServie.fenshu(zongfen, loginUsername, ksname);
+	try {
+			Integer fenshued=score.getScore();
+		
+		
+		if(null==fenshued||0==fenshued) {
+			
+			kaoShiServie.fenshu(zongfen, loginUsername, ksname);
+		
+		}else {
+			kaoShiServie.updateScore(zongfen, loginUsername, ksname);
+			
+		}
+		} catch (Exception e) {
+			kaoShiServie.fenshu(zongfen, loginUsername, ksname);
+			
+		}
+		
 	
-	return "ÏµÍ³ÒÑÍê³ÉÔÄ¾íÏÖÔÚÄú¿ÉÒÔ²é¿´ÄúµÄ¿¼ÊÔ³É¼¨!";
+	
+		
+		
+		
+		
+	}
+
 	
 	
 	
 	
-}        	 
+	
+	
+       	 
 
 @RequestMapping("kscj")
 @ResponseBody
@@ -188,7 +221,8 @@ public Integer kscj(String ksname,String loginUsername) {
 }
 @RequestMapping("jiludaan")
 @ResponseBody
-public String jiludaan(String daan,Integer xztm,String loginUsername,String ksname  ) {
+public void jiludaan(String daan,Integer xztm,String loginUsername,String ksname  ) {
+	
 	String mydaan="";
 	
 	if(daan.length()==1) {
@@ -207,13 +241,14 @@ public String jiludaan(String daan,Integer xztm,String loginUsername,String ksna
 	}
 	
 	String sfydaan=kaoShiServie.sfrk(loginUsername, ksname, xztm);
+	
 	if(sfydaan==null) {
 		kaoShiServie.jiludaan(mydaan, loginUsername, ksname, xztm);
 		
-		return "´ð°¸ÒÑ¾­Èë¿â";
+		
 	}else {
 	     kaoShiServie.daangengxin(mydaan, loginUsername, ksname, xztm);
-	return "´ð°¸ÒÑÖØÐÂÈë¿â";
+	
 	}
 	
 	
@@ -266,8 +301,8 @@ public String selectmydaan(String loginUsername,String sjname ,Integer sjxztm) {
 
 @RequestMapping("bjpm")
 @ResponseBody
-public List<User> bjpm(String ksname,String classname){
-	List<User> list=null;
+public List<BJPM> bjpm(String ksname,String classname){
+	List<BJPM> list=null;
 	try {
 		list=kaoShiServie.bjpm(ksname, classname);
 		return list;
@@ -283,52 +318,37 @@ public List<User> bjpm(String ksname,String classname){
 
 @RequestMapping("daochu")
 public void daochu(String ksname,String classname,HttpServletResponse response) {
-	//poi   java  officeÎÄµµ²Ù×÷jar°ü
-   System.out.println(ksname+classname);
-	List<User> list;
-	list=kaoShiServie.bjpm(ksname, classname);
-	//´´½¨¹¤×÷²¾
-	HSSFWorkbook workbook=new HSSFWorkbook();
-	//´´½¨±í¸ñsheet
-	HSSFSheet sheet=workbook.createSheet(classname+ksname+"¿¼ÊÔÅÅÃû.xls");
-	//´´½¨ÐÐrow
-	HSSFRow row=sheet.createRow(0);
-	//´´½¨ÁÐ
-	row.createCell(0).setCellValue("ÅÅÃû");
-	row.createCell(1).setCellValue("ÐÕÃû");
-	row.createCell(2).setCellValue("°à¼¶");
-	row.createCell(3).setCellValue("¿¼ÊÔÃû");
-	row.createCell(4).setCellValue("·ÖÊý");
-	//Èç¹ûlistµÄ³¤¶È²¿Î»Áã¾ÍËµÃ÷ÓÐÊý¾ÝÓÐÊý¾Ý²Å»á½øÈëµ½Ñ­ÖÐ½øÐÐÌí¼Ó
-	if(list.size()!=0) {
-		try {
-		for(int i=1;i<=list.size();i++) {
-			row=sheet.createRow(i); 
-			row.createCell(0).setCellValue(i);
-			row.createCell(1).setCellValue(list.get(i-1).getUserName());
-			row.createCell(2).setCellValue(list.get(i-1).getBanji());
-			row.createCell(3).setCellValue(ksname);
-			String loginUsername=list.get(i-1).getLoginUsername();
-			row.createCell(4).setCellValue(kaoShiServie.kscore(loginUsername, ksname));  
-	}
-		
-		OutputStream out;
-		
-			response.reset();
-			String filename=classname+ksname+"ÅÅÃû.xls";
-			response.setHeader("content-disposition", "attachment;filename="+filename);
-			out=response.getOutputStream();
-			
-			workbook.write(out);
-			workbook.close();
-			out.close();
-		} catch (IOException e) {
-		
-			e.printStackTrace();
-		}
-		
-	}
-	
+		/*
+		 * //poi java officeï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½jarï¿½ï¿½ System.out.println(ksname+classname);
+		 * List<BJPM> list; list=kaoShiServie.bjpm(ksname, classname); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		 * HSSFWorkbook workbook=new HSSFWorkbook(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sheet HSSFSheet
+		 * sheet=workbook.createSheet(classname+ksname+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.xls"); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½row
+		 * HSSFRow row=sheet.createRow(0); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		 * row.createCell(0).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		 * row.createCell(1).setCellValue("ï¿½ï¿½ï¿½ï¿½"); row.createCell(2).setCellValue("ï¿½à¼¶");
+		 * row.createCell(3).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		 * row.createCell(4).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		 * //ï¿½ï¿½ï¿½listï¿½Ä³ï¿½ï¿½È²ï¿½Î»ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²Å»ï¿½ï¿½ï¿½ëµ½Ñ­ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ if(list.size()!=0) { try {
+		 * for(int i=1;i<=list.size();i++) { row=sheet.createRow(i);
+		 * row.createCell(0).setCellValue(i);
+		 * row.createCell(1).setCellValue(list.get(i-1).getUserName());
+		 * row.createCell(2).setCellValue(list.get(i-1).getBanji());
+		 * row.createCell(3).setCellValue(ksname); String
+		 * loginUsername=list.get(i-1).getLoginUsername();
+		 * row.createCell(4).setCellValue(kaoShiServie.kscore(loginUsername, ksname)); }
+		 * 
+		 * OutputStream out;
+		 * 
+		 * response.reset(); String filename=classname+ksname+"ï¿½ï¿½ï¿½ï¿½.xls";
+		 * response.setHeader("content-disposition", "attachment;filename="+filename);
+		 * out=response.getOutputStream();
+		 * 
+		 * workbook.write(out); workbook.close(); out.close(); } catch (IOException e) {
+		 * 
+		 * e.printStackTrace(); }
+		 * 
+		 * }
+		 */
 }
 @RequestMapping("yemian")
 public String yemian() {
@@ -360,8 +380,8 @@ Integer s=kaoShiServie.vipex(loginUsername);
 @RequestMapping("fabukaoshi")
 public String fabukaoshi() {
 	//12345670   0101  1234567890 123456789abcdef0
-	//java¸¡µãÊýÔËËã²»¾«È·    ¸¡µãÊýÓÐÒ»¸ö¾«È·µÄÔËËãÀàÐÍ
-	//Ð¡×ª´ó×Ô¶¯×ª£¬´ó×ªÐ¡Ç¿×ª £¨ÎÒÃÇÏë×ªµÄÄÇ¸öÀàÐÍ£©
+	//javaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã²»ï¿½ï¿½È·    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//Ð¡×ªï¿½ï¿½ï¿½Ô¶ï¿½×ªï¿½ï¿½ï¿½ï¿½×ªÐ¡Ç¿×ª ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½Í£ï¿½
 	return "insertks";
 	
 	
@@ -395,23 +415,18 @@ public String pic() {
 	
 	
 }
-@RequestMapping("CGB1903")
-public String CGB1903() {
-	
-	return "CGB1903";
-	
-}
+
 
 @RequestMapping("yzpic")
 @ResponseBody
 public void yzpic(HttpServletRequest request,HttpServletResponse response) {
 	
 	BufferedImage bufimg= (BufferedImage) ImageUtil.getImage().get("codePic");
-	//»ñÈ¡ÎÒÃÇÍ¼Æ¬ÑéÖ¤ÂëÖÐµÄÄÚÈÝ
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 	String code=(String) ImageUtil.getImage().get("code");
-	//»ñÈ¡session
+	//ï¿½ï¿½È¡session
 	HttpSession session=request.getSession();
-	//½«ÎÒÃÇÑéÖ¤ÂëµÄÄÚÈÝ´æµ½sessionÖÐ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´æµ½sessionï¿½ï¿½
 	session.setAttribute("code", code);
 	
 	OutputStream out;
@@ -432,7 +447,7 @@ public void yzpic(HttpServletRequest request,HttpServletResponse response) {
 	
 	
 }
-//´íÌâÒ³Ãæ
+//ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
 @RequestMapping("cuoti")
 public String cuoti() {
 	return "cuoti";
@@ -440,7 +455,7 @@ public String cuoti() {
 	
 }
 
-//´íÌâÍ³¼Æ
+//ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½
 @RequestMapping("cuotitable")
 @ResponseBody
 public List<cuotimsg> cuotitable(String loginUsername){
@@ -502,15 +517,49 @@ public Integer  cuotiyuejuan(String  cuotidaan,Integer cuotirealid) {
 @RequestMapping("ctjiexi")
 @ResponseBody
 public KaoShi ctjiexi(String ksname,Integer tmid) {
-	//·µ»ØÏëÒª²éÑ¯½âÎöµÄÌâÄ¿
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 	return kaoShiServie.ctjiexi(ksname, tmid);
 	
 }
-@RequestMapping("CGB1904")
-public String CGB19041() {
-	return "CGB1904";
+@RequestMapping("myscore")
+@ResponseBody
+public List<Score> myscore(String loginUsername){
+	try {
+		return kaoShiServie.myscore(loginUsername);
+	} catch (Exception e) {
+		return null;
+	}
+	
+	
+	
 }
+@RequestMapping("isksTime")
+@ResponseBody
+public Integer isksTime(String ksname){
+	Date date =new Date();
+	Long nowdate=date.getTime();
+	String ksdate=kaoShiServie.isksTime(ksname);
+	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	try {
+		Date dateed=df.parse(ksdate);
+		Long realdate =dateed.getTime();
+		if(nowdate<realdate) {
+			return 0;
+			
+		}else {
+			
+			return 1;
+		}
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return 0;
+	}
+	
 
+	
+	
+}
 }
          
          

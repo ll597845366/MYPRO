@@ -4,33 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.KongJian.manage.mapper.KaoShiMapper">
 <!-- 通过账号查询已经发布的考试 -->
-<select id="xsks" resultType="String">
-select kaoshi_name from kaoshi where kaoshi_class=(select banji from user where login_username=#{loginUsername})
-
+<select id="xsks" resultType="KaoShi">
+select kaoshi_name,kaoshi_class,ks_time from kaoshi where kaoshi_class=(select banji from user where login_username=#{loginUsername})
+and tmid=1
 </select>
 
-<select id="tmzs" resultType="KaoShi">
-
-select * from kaoshi where kaoshi_name=#{kaoshiName}
+<select id="tmzs" resultType="Integer">
+select count(*) from kaoshi where kaoshi_name=#{kaoshiName}
 </select>
 
 <select id="xztm" resultType="KaoShi">
-
-select *from kaoshi where tmid=#{tmid}
-
+select * from kaoshi where tmid=#{xztm} and kaoshi_name=#{ksname}
 </select>
 <select id="zqda" resultType="KaoShi">
 
  select da_an,tmid,fenshu from kaoshi where id=#{id}
 </select>
+<select id="findScore" resultType="Score">
+select * from score where login_username=#{loginUsername} and kaoshi_name=#{ksname}
+</select>
+<insert id="fenshu">
+	insert into score values(#{loginUsername},#{score},#{ksname})
+</insert>
+<update id="updateScore" >
+update score set score=#{score} where login_username=#{loginUsername} and kaoshi_name=#{ksname}
 
-<update id="fenshu">
-	update user  set ${ksname}=#{zongfen} where login_username=#{loginUsername}
-	
-	</update>
+</update>
 	<select id="kscore" resultType="Integer">
-	
-	 select ${kscore} from user where login_username=#{loginUsername}
+	 select score from score where login_username=#{loginUsername} and kaoshi_name=#{ksname}
 	</select>
 	<insert id="jiludaan">
 	
@@ -53,10 +54,17 @@ select *from kaoshi where tmid=#{tmid}
 	
 	select * from kaoshi where tmid=#{timid} and kaoshi_name=#{kaoshiName}
 	</select>
-	<select id="bjpm"  resultType="User">
+	<select id="bjpm"  resultMap="bjpmMap">
+	SELECT u.banji,u.user_name,s.score,s.kaoshi_name FROM user u,score s WHERE u.login_username=s.login_username AND s.kaoshi_name=#{ksname} AND u.banji=#{classname} ORDER BY s.`score` DESC
 	
-	select user_name,banji,login_username,${ksname} from user where banji=#{classname} and ${ksname} is not null order by ${ksname} desc
+	
 	</select>
+	<resultMap type="BJPM" id="bjpmMap">
+	<result column="banji" property="banji" jdbcType="VARCHAR"/>
+	<result column="user_name" property="userName" jdbcType="VARCHAR"/>
+	<result column="kaoshi_name" property="kaoshiName" jdbcType="VARCHAR"/>
+	<result column="score" property="score" jdbcType="INTEGER"/>
+	</resultMap>
 	 <select id="vipex" resultType="Integer">
 	 
 	 select status from user where login_username=#{loginUsername}
@@ -92,5 +100,14 @@ select *from kaoshi where tmid=#{tmid}
 	  
 	  <select id="ctjiexi" resultType="KaoShi">
 	  select * from kaoshi where kaoshi_name=#{ksname} and tmid=#{tmid}
+	  </select>
+	  
+	  <select id="myscore" resultType="Score">
+	  select * from score where login_username=#{loginUsername}
+	  
+	  </select>
+	  <select id="isksTime" resultType="String">
+	  select ks_time from kaoshi where kaoshi_name=#{ksname} and tmid=1
+	  
 	  </select>
 </mapper>
